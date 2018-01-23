@@ -24,16 +24,16 @@ class DaysOfTheWeekViewController: UIViewController {
         daysOfTheWeekTableView.delegate = self
     }
     
-    /*
     // MARK:    Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toDetailVC" {
+            guard let detailVC = segue.destination as? DetailViewController else { return }
+            guard let indexPath = daysOfTheWeekTableView.indexPathForSelectedRow else { return }
+            let day = daysOfTheWeek[indexPath.row]
+            detailVC.day = day
+        }
     }
-    */
-
 }
 
 // MARK:    TableView Extension
