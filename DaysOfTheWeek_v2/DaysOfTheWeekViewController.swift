@@ -16,9 +16,14 @@ class DaysOfTheWeekViewController: UIViewController {
     
     var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     
+    // MARK:    Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        daysOfTheWeekTableView.dataSource = self
+        daysOfTheWeekTableView.delegate = self
     }
+    
     /*
     // MARK:    Navigation
 
@@ -30,6 +35,8 @@ class DaysOfTheWeekViewController: UIViewController {
     */
 
 }
+
+// MARK:    TableView Extension
 
 extension DaysOfTheWeekViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -43,6 +50,13 @@ extension DaysOfTheWeekViewController: UITableViewDataSource, UITableViewDelegat
     // Cell for row at
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell", for: indexPath)
+        let day = daysOfTheWeek[indexPath.row]
+        cell.textLabel?.text = day
         return cell
+    }
+    
+    // When user didSelect on row we are going to set the indexPath logged into the console - This is just for us to see when it is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
     }
 }
